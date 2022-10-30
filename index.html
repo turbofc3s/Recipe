@@ -5,20 +5,14 @@
 	<link rel="stylesheet" href="style.css"
 </head>
 <body>
-	<h1>Random Recipes</h1>
-	  <div class="container">
-	    <div class="search-container">
-	      <button id="recipe-btn">New Recipe</button>
-	    </div>
-	  </div> 
-	  <div id="result"></div>   
-	  
-	<button id="youtube-btn">Instructional Video</button>
-	<p id="instructions"></p> 
-	
-
-
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<h1>Click the button below to try some other receipes!</h1>
+	  <button onclick="newRecipe() "id="change-btn">Search</button>
+	  <h2 id='title'></h2>
+	  <img id="recipe-pic"><br>  
+	  <p id="ingredients"></p>
+	  <p id="instructions"></p>
+	  <button id="youtube-btn">Instructional Video</button> 
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
   <script src="script.js"></script>	
 </body>
 </html>
