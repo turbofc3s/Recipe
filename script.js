@@ -7,7 +7,6 @@ let ingredients = document.getElementById('ingredients');
 let instructions = document.getElementById("instructions")
 let url = "https://www.themealdb.com/api/json/v1/1/random.php";
 
-// functions to change recipes
   function newRecipe() {
 //  get request function to get info from the meal api
     axios.get(url)
@@ -15,38 +14,37 @@ let url = "https://www.themealdb.com/api/json/v1/1/random.php";
        const myMeal = response.data.meals[0]
        setTitle(myMeal);
        setRecipePic(myMeal);
-       setInstructions(myMeal); 
-       setYoutube(myMeal); 
-       setIngredients(myMeal);
-    })  
+       setInstructions(myMeal);
+       setVideo(myMeal);
+       // setIngredients(myMeal);
+     })
     
     function setTitle(recipe) {
       document.getElementById('title').innerHTML = recipe.strMeal; 
     }
 
     function setRecipePic(pic) {
-      console.log(pic.strMealThumb)
-      document.getElementById('recipePic').src = pic.strMealThumb;
+      document.getElementById('recipe-pic').src = pic.strMealThumb;
     }
 
-    function setInstructions(instructions) {
-      document.getElementById("instructions").innerHTML = instructions.strInstructions;
+    function setInstructions(info) {
+      document.getElementById("instructions").innerHTML = info.strInstructions;
     }
 
-    function setYoutube(video) {
-      document.getElementById('youtubeBtn').src = video.strYoutube
-    } 
+    // function setIngredients(need) {
+    //   const items = [] 
+    //   for(let i = 1; i <= 20; i++) {
+    //     if(!need.strIngredients[i] == "") {
+    //       items.push(need.strIngredients[i] - need.strMeasure[i])
+    //     } else {
+    //       break;
+    //    }
+    //   }  
+    function setVideo(vid) {
+      console.log(vid.strYoutube)
+      document.getElementById('youtube-btn').src = vid.strYoutube;
+    }
 
-    function setIngredients(list) {
-      let  theIngredients = list.strIngredients
-      console.log(theIngredients)
-        for (let i = 0 ; i < theIngredients.length; i++) {
-          if (theIngredients[i] !== "") {
-
-
-      }
-
-    } document.getElementById("ingredients").innerHTML  = 
-  }
+    
 }
      
