@@ -12,39 +12,70 @@ let url = "https://www.themealdb.com/api/json/v1/1/random.php";
     axios.get(url)
      .then(response => {
        const myMeal = response.data.meals[0]
-       setTitle(myMeal);
-       setRecipePic(myMeal);
-       setInstructions(myMeal);
-       setVideo(myMeal);
-       // setIngredients(myMeal);
+       setTitle(myMeal.strMeal);
+       setRecipePic(myMeal.strMealThumb);
+       setInstructions(myMeal.strInstructions);
+       if(myMeal.strYoutube) {
+        setVideo(myMeal.strYoutube);
+       } 
+       setIngredients(myMeal);
      })
     
-    function setTitle(recipe) {
-      document.getElementById('title').innerHTML = recipe.strMeal; 
+    function setTitle(title) {
+      document.getElementById('title').innerHTML = title; 
     }
 
     function setRecipePic(pic) {
-      document.getElementById('recipe-pic').src = pic.strMealThumb;
+      document.getElementById('recipe-pic').src = pic;
     }
 
-    function setInstructions(info) {
-      document.getElementById("instructions").innerHTML = info.strInstructions;
+    function setInstructions(instructions) {
+      document.getElementById("instructions").innerHTML = instructions;
     }
 
-    // function setIngredients(need) {
-    //   const items = [] 
-    //   for(let i = 1; i <= 20; i++) {
-    //     if(!need.strIngredients[i] == "") {
-    //       items.push(need.strIngredients[i] - need.strMeasure[i])
-    //     } else {
-    //       break;
-    //    }
-    //   }  
-    function setVideo(vid) {
-      console.log(vid.strYoutube)
-      document.getElementById('youtube-btn').src = vid.strYoutube;
+    function setIngredients(meal) {
+      let count = 1
+      let ingredients = [];;
+      for(let i in meal) {
+        let ingredient = "";
+        let measure = "";
+        if (i.startsWith('strIngredient') && meal[i]) {
+        ingredient = meal[i];
+        measure = meal[`strMeasure` + count];
+        count += 1;
+        ingredients.push(`${measure} ${ingredient}`);
+      }
+     }
+       document.getElementById('ingredients').innerHTML = ingredients;
+    //   let count = 1
+    //   let mealKeys =  Object.keys(meal)
+    //   let mealValues = Object.values(meal)
+    //   console.log(mealKeys + mealValues)
+      
+    //   for(let i = 1; i < mealKeys.length; i++) {
+    //     let ingredient = '';
+    //     let measure = '';
+    //     if(mealKeys[i].startsWith('strIngredient'))  {
+    //       ingredient = mealValues[i];
+    //       measure = mealKeys[`strMeasure` + count];    
+    //       count += 1;
+    //       ingredients.push(`${measure} ${ingredient}`);
+
+
+          
+
+    //       }
+
+    // console.log(ingredients);
+    //     }
+      }  
+    function setVideo(url) {
+      let id = url.split("=")[1];
+      let youTubeUrl = 'https://www.youtube.com/embed/' + id;
+      document.getElementById('youtube-btn').src = youTubeUrl;
+      // document.getElementById('youtube-btn').src = vid.strYoutube;
     }
 
-    
+      
 }
      
