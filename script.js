@@ -24,6 +24,7 @@ function getMeals() {
       }
       setIngredients(myMeal);
   })
+}    
 
   changeBtn.addEventListener('click', function() {
 //  get request function to get info from the meal api
@@ -70,7 +71,7 @@ function getMeals() {
       document.getElementById('youtube-btn').src = youTubeUrl;
       // document.getElementById('youtube-btn').src = vid.strYoutube;
     }      
-}
+
   
 
   
