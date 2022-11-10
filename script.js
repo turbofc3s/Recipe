@@ -50,12 +50,12 @@ function getMeals() {
         let ingredient = "";
         let measure = "";
         if (i.startsWith('strIngredient') && meal[i]) {
-        ingredient = meal[i];
-        measure = meal[`strMeasure` + count];
-        count += 1;
-        ingredients.push(`${measure} ${ingredient}`);
+          ingredient = meal[i];
+          measure = meal[`strMeasure` + count];
+          count += 1;
+          ingredients.push(`${measure} ${ingredient}`);
+        }
       }
-     }
        console.log(ingredients)
 
        ingredients.forEach((item) => {
